@@ -1,9 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+  def paper_trail_enabled_for_controller
+    false
+  end
+
   # GET /posts
   # GET /posts.json
   def index
+    @paper_enabled = PaperTrail.enabled?
+    puts ">>>>>>>>>>>>> #{@paper_enabled}"
     @posts = Post.all
   end
 
